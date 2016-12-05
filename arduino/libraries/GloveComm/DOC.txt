@@ -1,0 +1,8 @@
+GloveSerial Notes
+-very basic buffering system for sending analog values
+
+void setAxis(String name, int value)
+adds a string, int pair to the buffer
+
+void sendAll()
+sends the entire current buffer to the serial port and clears the buffer
