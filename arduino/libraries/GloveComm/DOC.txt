@@ -1,6 +1,9 @@
 GloveSerial Notes
 -very basic buffering system for sending analog values
 
+To initialize GloveComm object, use the statement
+GloveCommm port; //note here no parentheses afer port and no need for 'new' syntax. After this declaration the port object is constructed and can be used.
+
 void setAxis(String name, int value)
 adds a string, int pair to the buffer
 
