@@ -6,11 +6,11 @@ GloveComm::GloveComm() {
   _buffer = "";
 }
 
-GloveComm::setAxis(String _name, int value) {
+void GloveComm::setAxis(String _name, int value) {
   _buffer = _buffer + " " + _name + " " + value + " ";
 }
 
-GloveComm::sendAll() {
+void GloveComm::sendAll() {
   Serial.print(_buffer);
   _buffer = "";
 }
