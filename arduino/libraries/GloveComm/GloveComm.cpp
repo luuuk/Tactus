@@ -11,7 +11,7 @@ void GloveComm::setAxis(String _name, int value) {
 }
 
 void GloveComm::sendAll() {
-  Serial.print(_buffer);
+  Serial.println(_buffer);
   _buffer = "";
 }
 
