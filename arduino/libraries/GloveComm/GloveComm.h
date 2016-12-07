@@ -10,6 +10,6 @@ class GloveComm {
     void sendAll();
   private:
     String _buffer;  
-}
+};
 
 #endif
