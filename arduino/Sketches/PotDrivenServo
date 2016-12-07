@@ -1,0 +1,19 @@
+#include <Servo.h>
+
+Servo myservo;  // create servo object to control a servo
+// twelve servo objects can be created on most boards
+
+int pos = 0;    // variable to store the servo position
+int potPin = 2;    // select the input pin for the potentiometer
+int val = 0;       // variable to store the value coming from the sensor
+
+void setup() {
+  myservo.attach(11);  // attaches the servo on pin 9 to the servo object
+  Serial.begin(9600);
+}
+
+void loop() {
+  val = analogRead(potPin); 
+  myservo.write(val/5); 
+  delay(5);
+}
