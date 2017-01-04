@@ -10,7 +10,9 @@ class SlidePot {
     int dest;//destination
     void mov(bool dir, int pwm);//sets motor speed in a given direction; (0 < pwm < 255)
                                 //dir true=forward, false=backward
-    
+    void stp();// stop motor
+    void fre();//let motor freespin
+       
   public:
     SlidePot(int _pot, int _en, int _fr, int _bk, int _force);
     void set(int pos);//set destination
@@ -56,6 +58,16 @@ void SlidePot::mov(bool dir, int pwm) {
     digitalWrite(fr, LOW);
   }
   analogWrite(en, pwm);
+}
+
+void SlidePot::stp() {
+  digitalWrite(en, HIGH);
+  digitalWrite(fr, LOW);
+  digitalWrite(bk, LOW);
+}
+
+void SlidePot::fre() {
+  digitalWrite(en, LOW);
 }
 
 
