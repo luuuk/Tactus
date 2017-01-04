@@ -1,12 +1,15 @@
 const int margin = 5;//acceptable margin of error for slidepot positioning
+const int pwm_speed = 127;//speed for moving slidepot motor. currently constant; may make dynamic later
 class SlidePot {
   private:
-    int pot;//pin for potentiometer
-    int en;//pin for 'enable' on H-bridge
-    int fr;//pin for forward motor
-    int bk;//pin for backward motor
+    int pot;//pin for potentiometer (analog pin)
+    int en;//pin for 'enable' on H-bridge (digital pwm pin)
+    int fr;//pin for forward motor (digital pin)
+    int bk;//pin for backward motor (digital pin)
     int force; //pin for force sensing (current draw)
     int dest;//destination
+    void mov(bool dir, int pwm);//sets motor speed in a given direction; (0 < pwm < 255)
+                                //dir true=forward, false=backward
     
   public:
     SlidePot(int _pot, int _en, int _fr, int _bk, int _force);
@@ -39,9 +42,20 @@ void SlidePot::getForce() {
 
 void SlidePot::check() {
   int potpos = analogRead(pot);
-  int diff = potpos-dest;//diff between desired position and actual position
+  int diff = dest - potpos;//diff between desired position and actual position
   if(abs(diff) <= margin) return;//if diff is within acceptable margin, return; no adjustment needed.
-  
+  mov(diff>0, pwm_speed);
+}
+
+void SlidePot::mov(bool dir, int pwm) {
+  if(dir) {
+    digitalWrite(fr, HIGH);
+    digitalWrite(bk, LOW);
+  } else {
+    digitalWrite(bk, HIGH);
+    digitalWrite(fr, LOW);
+  }
+  analogWrite(en, pwm);
 }
 
 
