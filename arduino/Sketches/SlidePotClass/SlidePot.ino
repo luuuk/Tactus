@@ -17,24 +17,26 @@ class SlidePot {
   */  
     int force; //pin for force sensing (current draw)
     int dest;//destination
+    int fMax; //max force before release
     void mov(bool dir, int pwm);//sets motor speed in a given direction; (0 < pwm < 255)
                                 //dir true=forward, false=backward
     void stp();// stop motor
     void fre();//let motor freespin
        
   public:
-    SlidePot(int _pot, int _en, int _fr, int _bk, int _force);
+    SlidePot(int _pot, int _en, int _fr, int _bk, int _force, int fMax_);
     void set(int pos);//set destination
+    void setForce(int fMax);
     int getPos();//get current pot position
     int getForce();//amount of force exerted on motor; current draw
     void check();//checks current position against destination and moves accordingly
+    
 };
 
 SlidePot::SlidePot() {
   AFMS = Adafruit_MotorShield();
   motor = AFMS.getMotor(1);
   AFMS.begin();
-  
 }
 
 void SlidePot::set(int pos) {
@@ -69,6 +71,7 @@ void SlidePot::mov(bool dir, int pwm) {
 void SlidePot::fre() {
   motor.run(RELEASE);
 }
+
 
 
 
