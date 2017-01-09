@@ -1,3 +1,5 @@
+#include <Adafruit_MotorShield.h>
+
 void setup() {
   // put your setup code here, to run once:
 
