@@ -7,9 +7,11 @@ class GloveComm {
   public:
     GloveComm();
     void setAxis(String _name, int value);
-    void sendAll();
+    void update();
   private:
     String _buffer;  
+    String _keys;
+    String _vals;
 };
 
 #endif
