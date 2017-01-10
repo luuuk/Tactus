@@ -5,6 +5,7 @@ class sComm {
   //HashMap<String, Integer> vals; 
   String[] types;
   int[] vals;
+  String buff = "";
 
   sComm(PApplet sketch) {
     myPort = new Serial(sketch, Serial.list()[4], 9600);
@@ -34,8 +35,13 @@ class sComm {
         }
       } else { //if we've already established contact, keep getting and parsing data
         println(val);
-
-        for
+        String[] tokens = split(val, ' ');
+        for(int i = 0; i < tokens.length-1; i += 2)
+          for(int j = 0; j < types.length; j++) {
+            if(tokens[i] == types[i]) {
+              vals[i] = int(tokens[i+1]);
+            }
+          }
 
         // when you've parsed the data you have, ask for more:
         myPort.write("A");
