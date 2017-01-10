@@ -2,7 +2,6 @@ class sComm {
   Serial myPort;
   String val;
   boolean firstContact = false;
-  //HashMap<String, Integer> vals; 
   String[] types;
   int[] vals;
   String buff = "";
@@ -17,8 +16,13 @@ class sComm {
     myPort.bufferUntil('\n');
     types = types_;
   }
+  
+  void setAxis(String _name, int _value) {
+  buff = buff + " " + _name + " " + _value + " ";
+}
 
-  void serialEvent( Serial myPort) {
+
+  void serialEvent(Serial myPort) {
     val = myPort.readStringUntil('\n');
     if (val != null) {
       val = trim(val);
@@ -44,7 +48,9 @@ class sComm {
           }
 
         // when you've parsed the data you have, ask for more:
-        myPort.write("A");
+        myPort.write(buff);
+        
+        buff = "";
       }
     }
   }

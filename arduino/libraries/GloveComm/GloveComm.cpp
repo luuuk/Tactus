@@ -15,3 +15,13 @@ void GloveComm::sendAll() {
   _buffer = "";
 }
 
+/*
+find &
+next pos = name
+& = 0;
+find :
+next pos = value
+: = 0;
+do something with name/value
+repeat
+*/
