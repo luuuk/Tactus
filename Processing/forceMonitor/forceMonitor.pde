@@ -1,58 +1,44 @@
 import processing.serial.*;
 
-Serial port; 
-int val, num; 
-ArrayList<String> names = new ArrayList<String>(); 
-HashMap<String, Integer> vals;
+int val = 0;
+int num = 3; //must = the length of the array passed to the port object
 int j = 0;
+sComm port;
+int[][] vals;
+int smoothing = 1;
+String[] names = {"val1", "val2", "val3"};
+
 
 void setup() 
 {
   size(800, 400);
-  surface.setResizable(true);
-  vals = new HashMap<String, Integer>();
-
+  port = new sComm(this, names);
   printArray(Serial.list());
-  String portName = Serial.list()[1];
-  port = new Serial(this, portName, 9600);
   background(255);
-  port.bufferUntil('\n');
+  vals = new int[num][width];
 }
 
 void draw()
 {
   //check();
   stroke(0, 255, 0);
-  num = vals.size();
   if (num>0) {
     for (int i = 0; i < num; i++) {
+      vals[i][j] = port.vals[i]; //save most recent new value as current name/time value
       stroke(0);
       rect((i*width/num)+j, 0, 1, height);
       stroke(0, 255, 0);
       //line((i*width/num)+j, map(random(0,1023), 0, 1023, 0, height), (i*width/num)+j, height);
-      line((i*width/num)+j, map(vals.get(names.get(i)), 0, 1023, height, 0), (i*width/num)+j, height);
+      line((i*width/num)+j, map(avg(i, j), 0, 1023, height, 0), (i*width/num)+j, height);
     }
+      
     j = (j+1)%(width/num-3);
   }
 }
 
-/*void serialEvent(Serial p) {
- //print("dyfjf");
- //while (port.available() > 0)
- {
- String newline;
- 
- //p.readStringUntil('\n');
- //delay(10);
- newline = p.readStringUntil('\n');
- println(newline);
- port.clear();
- //newline = "force 567 lala 875";
- int value = -10;
- if (newline != null) value = int(trim(newline));
- if (value != -10) {
- vals.put("force", value);
- names.add("force");
- }
- }
- }*/
+int avg(int q, int w) {
+  int total = 0;
+  for(int i = w-smoothing; i <= w+smoothing; i++) total += vals[q][i];
+  total /= (smoothing*2)+1;
+  return vals[q][w];
+}

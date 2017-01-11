@@ -12,7 +12,7 @@ class sComm {
   }
 
   sComm(PApplet sketch, String[] types_) {
-    myPort = new Serial(sketch, Serial.list()[4], 9600);
+    myPort = new Serial(sketch, Serial.list()[0], 9600);
     myPort.bufferUntil('\n');
     types = types_;
   }
@@ -34,7 +34,7 @@ class sComm {
           firstContact = true;
           myPort.write("A");
           print("types: ");
-          for (int i = 0; i < names.size(); i++) print(types[i] + " ");
+          for (int i = 0; i < names.length; i++) print(types[i] + " ");
           println("end");
         }
       } else { //if we've already established contact, keep getting and parsing data
