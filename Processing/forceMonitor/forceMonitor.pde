@@ -6,7 +6,7 @@ int j = 0;
 sComm port;
 int[][] vals;
 int smoothing = 1;
-String[] names = {"val1", "val2", "val3"};
+String[] names = {"pot", "force1", "force2"};
 
 
 void setup() 
@@ -28,7 +28,6 @@ void draw()
       stroke(0);
       rect((i*width/num)+j, 0, 1, height);
       stroke(0, 255, 0);
-      //line((i*width/num)+j, map(random(0,1023), 0, 1023, 0, height), (i*width/num)+j, height);
       line((i*width/num)+j, map(avg(i, j), 0, 1023, height, 0), (i*width/num)+j, height);
     }
       
@@ -38,7 +37,7 @@ void draw()
 
 int avg(int q, int w) {
   int total = 0;
-  for(int i = w-smoothing; i <= w+smoothing; i++) total += vals[q][i];
-  total /= (smoothing*2)+1;
+  for(int i = w; i <= w+smoothing; i++) total += vals[q][i];
+  total /= (smoothing)+1;
   return vals[q][w];
 }
