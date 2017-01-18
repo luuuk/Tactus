@@ -1,0 +1,7 @@
+SlidePot	KEYWORD1
+set KEYWORD2
+setForce	KEYWORD2
+getPos	KEYWORD2
+getForce1	KEYWORD2
+getForce2	KEYWORD2
+check	KEYWORD2

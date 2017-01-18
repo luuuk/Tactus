@@ -1,3 +1,5 @@
 GloveComm	KEYWORD1
 setAxis	KEYWORD2
-sendAll	KEYWORD2
+update	KEYWORD2
+get	KEYWORD2
+serialEvent	KEYWORD2

@@ -8,7 +8,7 @@
 class SlidePot {
   private:
     Adafruit_MotorShield AFMS;
-    Adafruit_DCMotor motor;
+    Adafruit_DCMotor * motor;
     
     int pot;//pin for potentiometer (analog pin)
     
