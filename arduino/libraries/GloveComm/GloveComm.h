@@ -10,6 +10,7 @@ class GloveComm {
     void update();
     String types[];
     int vals[];
+	int get(String _name);
   private:
     String _buffer;  
     String _keys;

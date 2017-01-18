@@ -11,13 +11,20 @@ void GloveComm::setAxis(String _name, int value) {
   _buffer = _buffer + _name + “:” + value + “&”;
 }
 
-void GloveComm::sendAll() {
+void GloveComm::update() {
   Serial.println(_buffer);
   _buffer = “&”;
 }
 
 String GloveComm::delete(String s, int index) {
   return s.substring(0, index) + "*" + s.substring(index+1);
+}
+
+int GloveComm::get(String _name) {
+	for(int i = 0; i < types.length; i++){
+		if(_name == types[i]) return vals[i];
+	}
+	return -1; //No value found
 }
 
 void GloveComm::serialEvent(){
