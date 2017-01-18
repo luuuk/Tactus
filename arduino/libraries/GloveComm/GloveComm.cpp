@@ -7,19 +7,24 @@ GloveComm::GloveComm(String types_[3]) {
   types = types_;
 }
 
+//Adds a name-value pair to the buffer to be sent
 void GloveComm::setAxis(String _name, int value) {
   _buffer = _buffer + _name + “:” + value + “&”;
 }
 
+//Must be called at the end of the loop() method in the main arduino file
+//Prints the current buffer to the serial port
 void GloveComm::update() {
   Serial.println(_buffer);
   _buffer = “&”;
 }
 
+//Replaces a given index of a string with '*'
 String GloveComm::delete(String s, int index) {
   return s.substring(0, index) + "*" + s.substring(index+1);
 }
 
+//get the value associated with a given name
 int GloveComm::get(String _name) {
 	for(int i = 0; i < types.length; i++){
 		if(_name == types[i]) return vals[i];
@@ -27,6 +32,8 @@ int GloveComm::get(String _name) {
 	return -1; //No value found
 }
 
+//Must be called by serialEvent() method in main arduino file. 
+//Takes serial input and updates values in array
 void GloveComm::serialEvent(){
   String val = readString();
   if (val != null) {
