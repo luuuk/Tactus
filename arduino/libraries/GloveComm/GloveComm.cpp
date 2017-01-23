@@ -9,14 +9,14 @@ GloveComm::GloveComm(String types_[3]) {
 
 //Adds a name-value pair to the buffer to be sent
 void GloveComm::setAxis(String _name, int value) {
-  _buffer = _buffer + _name + “:” + value + “&”;
+  _buffer = _buffer + _name + ":" + value + "&";
 }
 
 //Must be called at the end of the loop() method in the main arduino file
 //Prints the current buffer to the serial port
 void GloveComm::update() {
   Serial.println(_buffer);
-  _buffer = “&”;
+  _buffer = "&";
 }
 
 //Replaces a given index of a string with '*'
