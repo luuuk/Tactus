@@ -29,6 +29,7 @@ class SlidePot {
        
   public:
     SlidePot(int _pot, int _en, int _fr, int _bk, int _force, int fMax_);
+    SlidePot(int _pot, int _force1, int _force2);
     void set(int pos);//set destination
     void setForce(int fMax);
     int getPos();//get current pot position

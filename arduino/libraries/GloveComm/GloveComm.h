@@ -10,12 +10,13 @@ class GloveComm {
     void update();
     String types[];
     int vals[];
-	int get(String _name);
+    int get(String _name);
+    String del(String s, int index);
   private:
     String _buffer;  
     String _keys;
     String _vals;
-    String delete(String s, int index);
+    
 };
 
 #endif

@@ -46,7 +46,6 @@ class sComm {
         firstAnd = val.indexOf("&");
       }
 
-
       // when you've parsed the data you have, ask for more:
       myPort.write(buff);
 

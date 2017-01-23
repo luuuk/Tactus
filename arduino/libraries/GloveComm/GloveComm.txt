@@ -20,7 +20,7 @@ void GloveComm::update() {
 }
 
 //Replaces a given index of a string with '*'
-String GloveComm::delete(String s, int index) {
+String GloveComm::del(String s, int index) {
   return s.substring(0, index) + "*" + s.substring(index+1);
 }
 
@@ -47,8 +47,8 @@ void GloveComm::serialEvent(){
           int value = int(val.substring(valPos, secondAnd));
           for (int j = 0; j < types.length; j++) 
             if (name == types[j]) vals[j] = value;
-          val = delete(val, firstAnd);
-          val = delete(val, firstCol);
+          val = del(val, firstAnd);
+          val = del(val, firstCol);
           firstAnd = val.indexOf("&");
         }
   }
