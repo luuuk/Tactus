@@ -1,7 +1,7 @@
 import processing.serial.*;
 
 int val = 0;
-int num = 3; //must = the length of the array passed to the port object
+int num = 3; //must equal the length of the array passed to the port object
 int j = 0;
 sComm port;
 int[][] vals;
