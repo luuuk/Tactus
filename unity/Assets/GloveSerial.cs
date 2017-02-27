@@ -10,12 +10,15 @@ namespace HapticGlove
         private const string portName = "COM1";
         private Dictionary<string, int> map;
         private SerialPort port;
+        private string buffer;
 
         public GloveSerial()
         {
             port = new SerialPort(portName);
             port.BaudRate = 9600;
             port.Open();
+            map = new Dictionary<string, int>();
+            buffer = "";
         }
 
         public void Check()
@@ -24,12 +27,28 @@ namespace HapticGlove
             while (port.BytesToRead > 0)
             {
                 newline = port.ReadLine();
-                string[] words = newline.Split(' ');
-                for (int i = 0; i < words.Length; i += 2)
+                string[] pairs = newline.Split('&');
+                for (int i = 0; i < pairs.Length; i += 1)
                 {
-                    map[words[i]] = int.Parse(words[i + 1]);
+                    int colon = pairs[i].IndexOf(":");
+                    string name = pairs[i].Substring(0, colon);
+                    int val = int.Parse(pairs[i].Substring(colon + 1));
+                    map[name] = val;
                 }
             }
+        }
+
+        //adds a name-value pair to the buffer
+        public void Set(string key, int val)
+        {
+            buffer += "&" + key + ":" + val;
+        }
+        
+        //Must be called in the "Update" method of the object extending Monobehavior
+        public void Send()
+        {
+            port.WriteLine(buffer);
+            buffer = "";
         }
 
         public int Get(string key)
