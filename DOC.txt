@@ -1,0 +1,50 @@
+Format of Data:
+&<name>:<value>&<name>:<value>.... etc (
+
+(<name> is always preceded by “&”, <value> is always preceded by “:”)
+sent in lines, read until \n
+
+<name> is a string, <value> is a 10-bit analog value (0 to 1023 range)
+
+Arduino sends position data to the computer.
+The computer sends force instructions to the Arduino.
+Both use the same <name>s for each joint/finger.
+
+Reading: 
+Read until \n into buffer
+While there are &’s left {
+    Find first &
+    Find first :
+    Find second &
+    Read name value pair from positions
+    Change first & and : to 0 characters
+}
+
+C-style reading for Arduino
+// Get next command from Serial (add 1 for final 0) 
+char input[INPUT_SIZE + 1]; 
+byte size = Serial.readBytes(input, INPUT_SIZE); 
+// Add the final 0 to end the C string 
+input[size] = 0; 
+// Read each command pair 
+char* command = strtok(input, "&"); 
+while (command != 0) { 
+  // Split the command in two values 
+  char* separator = strchr(command, ':'); 
+  if (separator != 0) { 
+    // Actually split the string in 2: replace ':' with 0 
+    *separator = 0; 
+    int servoId = atoi(command); 
+    ++separator; 
+    int position = atoi(separator); 
+    // Do something with servoId and position 
+  } 
+  // Find the next command in input string 
+  command = strtok(0, "&"); 
+}
+
+
+Writing:
+Start with &
+Add name value pairs in <name>:<value>& format so that lines end in &
+Send as a string with a \n character at the end
