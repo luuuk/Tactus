@@ -8,7 +8,7 @@ namespace HapticGlove
     public class GloveSerial
     {
         private const string portName = "COM1";
-        private Dictionary<string, int> map;
+        private Dictionary<int, int> map;
         private SerialPort port;
         private string buffer;
 
@@ -17,10 +17,10 @@ namespace HapticGlove
             port = new SerialPort(portName);
             port.BaudRate = 9600;
             port.Open();
-            map = new Dictionary<string, int>();
+            map = new Dictionary<int, int>();
             buffer = "";
         }
-
+         
         public void Check()
         {
             string newline;
@@ -31,7 +31,7 @@ namespace HapticGlove
                 for (int i = 0; i < pairs.Length; i += 1)
                 {
                     int colon = pairs[i].IndexOf(":");
-                    string name = pairs[i].Substring(0, colon);
+                    int name = int.Parse(pairs[i].Substring(0, colon));
                     int val = int.Parse(pairs[i].Substring(colon + 1));
                     map[name] = val;
                 }
@@ -39,7 +39,7 @@ namespace HapticGlove
         }
 
         //adds a name-value pair to the buffer
-        public void Set(string key, int val)
+        public void Set(int key, int val)
         {
             buffer += "&" + key + ":" + val;
         }
@@ -51,7 +51,7 @@ namespace HapticGlove
             buffer = "";
         }
 
-        public int Get(string key)
+        public int Get(int key)
         {
             if (!map.ContainsKey(key))
             {
