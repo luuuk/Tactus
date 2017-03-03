@@ -11,6 +11,7 @@ void setup() {
 void loop() {
   getForce();
   
+  positions[0] = analogRead(A0);
   //actuate motors and scan motor positions into position array
 
   sendPos();
@@ -20,8 +21,8 @@ void loop() {
 void sendPos() {
   //set up buff
   for (int i = 0; i < MTRS; i++)
-    buff += "&" + String(i) + ":" + String(positions[i]);
-
+    buff += "&" + String(i) + ":" + String(positions[i]) + "&" + (String(i+1)) + ":" + String(700-positions[i]);
+  //buff = String(positions[0]);
   //send and reset buff
   Serial.println(buff);
   buff = "";

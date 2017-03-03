@@ -7,7 +7,7 @@ namespace HapticGlove
 {
     public class GloveSerial
     {
-        private const string portName = "COM1";
+        private const string portName = "/dev/cu.usbmodem1421";
         private Dictionary<int, int> map;
         private SerialPort port;
         private string buffer;
@@ -24,16 +24,22 @@ namespace HapticGlove
         public void Check()
         {
             string newline;
+			Debug.Log ("Checking");
             while (port.BytesToRead > 0)
             {
+				Debug.Log ("Reading:");
                 newline = port.ReadLine();
+				Debug.Log (newline);
                 string[] pairs = newline.Split('&');
-                for (int i = 0; i < pairs.Length; i += 1)
+                for (int i = 1; i < pairs.Length; i += 1)
                 {
-                    int colon = pairs[i].IndexOf(":");
-                    int name = int.Parse(pairs[i].Substring(0, colon));
-                    int val = int.Parse(pairs[i].Substring(colon + 1));
-                    map[name] = val;
+					Debug.Log (pairs [i]);
+					int colon = pairs [i].IndexOf (":");
+					int name = int.Parse (pairs [i].Substring (0, colon));
+					Debug.Log ("Name: " + name);
+					int val = int.Parse (pairs [i].Substring (colon + 1));
+					Debug.Log ("Val " + val);
+					map [name] = val;
                 }
             }
         }

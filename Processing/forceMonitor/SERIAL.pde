@@ -12,13 +12,13 @@ class sComm {
   }
 
   sComm(PApplet sketch, String[] types_) {
-    myPort = new Serial(sketch, Serial.list()[3], 9600);
+    myPort = new Serial(sketch, Serial.list()[1], 9600);
     myPort.bufferUntil('\n');
     types = types_;
   }
 
   void setAxis(String _name, int _value) {
-    buff = buff + _name + ":" + _value + "&";
+    buff = buff + "&" + _name + ":" + _value;
   }
 
   String delete(String s, int index) {
