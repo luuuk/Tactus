@@ -6,7 +6,7 @@ int j = 0;
 sComm port;
 int[][] vals;
 int smoothing = 1;
-String[] names = {"pot", "force1", "force2"};
+String[] names = {"0", "force1", "force2"};
 
 
 void setup() 
