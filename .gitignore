@@ -1,1 +1,4 @@
 *.DS_Store
+/Library/
+/Obj/
+/Temp/
