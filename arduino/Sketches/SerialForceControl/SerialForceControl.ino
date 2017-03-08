@@ -14,12 +14,18 @@ void setup() {
 void loop() {
   //getForce();
 
-  servo.write(map(forces[0], 0, 180, 0, 160));
-  //delay(15);
-  positions[0] = analogRead(A0);
 
   //actuate motors and scan motor positions into position array
+  if(analogRead(A0) < forces[0]) {
+    positions[0]++;
+  } else {
+    positions[0]--;
+  }
+  positions[0] = constrain(positions[0], 0, 180);
+  servo.write(positions[0]);
+  delay(15);
 
+  //send positions back to unity
   sendPos();
 }
 
