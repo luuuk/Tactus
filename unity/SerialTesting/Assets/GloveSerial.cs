@@ -11,6 +11,8 @@ public class GloveSerial : MonoBehaviour
     private Dictionary<int, int> map;
     private SerialPort port;
     private string buffer;
+	public float uno { get; set; }
+	public float dos { get; set; }
 
     public GloveSerial()
     {
@@ -42,6 +44,8 @@ public class GloveSerial : MonoBehaviour
 				map [name] = val;
             }
         }
+		map [0] = uno;
+		map [1] = dos;
     }
 
     //adds a name-value pair to the buffer

@@ -22,6 +22,7 @@ public class PlaneControl : MonoBehaviour {
 
 	void OnCollisionEnter(Collision c) {
 		GetComponent<Renderer> ().material = collide;
+
 	}
 
 	void OnCollisionExit(Collision c) {
