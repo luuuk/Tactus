@@ -11,8 +11,8 @@ public class GloveSerial : MonoBehaviour
     private Dictionary<int, int> map;
     private SerialPort port;
     private string buffer;
-	public float uno { get; set; }
-	public float dos { get; set; }
+	public int uno { get; set; }
+	public int dos { get; set; }
 
     public GloveSerial()
     {

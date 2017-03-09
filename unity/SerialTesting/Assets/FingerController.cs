@@ -11,13 +11,13 @@ public class FingerController : MonoBehaviour {
     public GameObject[] segments;
     public float fingerPos { get; set; }
     public float knucklePos { get; set; }
-	private GloveSerial port;
+	//private GloveSerial port;
 
 
 
 	// Use this for initialization
 	void Start () {
-		port = new GloveSerial();
+		//port = new GloveSerial();
         segments = new GameObject[3];
         segments[0] = f0;
         segments[1] = f1;
@@ -28,9 +28,9 @@ public class FingerController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		//serial updates
-		port.Check();
-		fingerPos = port.Get(0);
-		knucklePos = port.Get(1);
+		//port.Check();
+		//fingerPos = port.Get(0);
+		//knucklePos = port.Get(1);
 		//position updates
 		updatePos();
 	}
