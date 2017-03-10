@@ -2,19 +2,19 @@
 -target:library
 -nowarn:0169
 -langversion:4
--out:'Temp/Assembly-CSharp.dll'
--r:'/Applications/Unity/Unity.app/Contents/Managed/UnityEngine.dll'
--r:'/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll'
--r:'/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll'
--r:'/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/PlaymodeTestsRunner/UnityEngine.PlaymodeTestsRunner.dll'
--r:'/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll'
--r:'/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll'
--r:'/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll'
--r:'/Applications/Unity/Unity.app/Contents/Managed/UnityEditor.dll'
+-out:Temp/Assembly-CSharp.dll
+-r:"C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll"
+-r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll"
+-r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll"
+-r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/PlaymodeTestsRunner/UnityEngine.PlaymodeTestsRunner.dll"
+-r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll"
+-r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll"
+-r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll"
+-r:"C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll"
 -define:UNITY_5_3_OR_NEWER
 -define:UNITY_5_4_OR_NEWER
 -define:UNITY_5_5_OR_NEWER
--define:UNITY_5_5_0
+-define:UNITY_5_5_2
 -define:UNITY_5_5
 -define:UNITY_5
 -define:UNITY_ANALYTICS
@@ -75,15 +75,16 @@
 -define:UNITY_ASSERTIONS
 -define:UNITY_EDITOR
 -define:UNITY_EDITOR_64
--define:UNITY_EDITOR_OSX
+-define:UNITY_EDITOR_WIN
 -define:UNITY_TEAM_LICENSE
-'Assets/FingerController.cs'
-'Assets/GloveSerial.cs'
-'Assets/MoveScript.cs'
-'Assets/PlaneControl.cs'
--r:'/Applications/Unity/Unity.app/Contents/MonoBleedingEdge/lib/mono/2.0-api/System.Runtime.Serialization.dll'
--r:'/Applications/Unity/Unity.app/Contents/MonoBleedingEdge/lib/mono/2.0-api/System.Xml.Linq.dll'
--r:'/Applications/Unity/Unity.app/Contents/MonoBleedingEdge/lib/mono/2.0-api/UnityScript.dll'
--r:'/Applications/Unity/Unity.app/Contents/MonoBleedingEdge/lib/mono/2.0-api/UnityScript.Lang.dll'
--r:'/Applications/Unity/Unity.app/Contents/MonoBleedingEdge/lib/mono/2.0-api/Boo.Lang.dll'
+-define:ENABLE_VSTU
+Assets/FingerController.cs
+Assets/GloveSerial.cs
+Assets/MoveScript.cs
+Assets/PlaneControl.cs
+-r:"C:\Program Files\Unity\Editor\Data\MonoBleedingEdge\lib\mono\2.0-api\System.Runtime.Serialization.dll"
+-r:"C:\Program Files\Unity\Editor\Data\MonoBleedingEdge\lib\mono\2.0-api\System.Xml.Linq.dll"
+-r:"C:\Program Files\Unity\Editor\Data\MonoBleedingEdge\lib\mono\2.0-api\UnityScript.dll"
+-r:"C:\Program Files\Unity\Editor\Data\MonoBleedingEdge\lib\mono\2.0-api\UnityScript.Lang.dll"
+-r:"C:\Program Files\Unity\Editor\Data\MonoBleedingEdge\lib\mono\2.0-api\Boo.Lang.dll"
 -sdk:2.0
