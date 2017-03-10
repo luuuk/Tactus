@@ -1,5 +1,6 @@
 *.DS_Store
 SerialTesting/Library/
+SerialTesting/Library/UnityAssemblies/
 SerialTesting/Temp/
 /Library/
 /Obj/
