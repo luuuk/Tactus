@@ -14,10 +14,13 @@ void setup() {
 void loop() {
   //getForce();
 
-  //forces[0] = analogRead(A0);
+  int force = analogRead(A0) - 115 - forces[0];
+  if (force > 0) {
+    positions[0]--;
+  } else {
+    positions[0]++;
+  }
   //actuate motors and scan motor positions into position array
-  int force = forces[0] - 127;
-  positions[0] -= constrain(force/2, -5, 5);
   positions[0] = constrain(positions[0], 0, 180);
   servo.write(positions[0]);
   delay(15);
@@ -31,7 +34,7 @@ void sendPos() {
   //set up buff
   //positions[0] = forces[0];
   for (int i = 0; i < MTRS; i++)
-    buff += "&" + String(i) + ":" + String(forces[i]) + "&" + (String(i + 1)) + ":" + String(positions[i]);
+    buff += "&" + String(i) + ":" + String(map(positions[i], 0, 180, 0, 110)) + "&" + (String(i + 1)) + ":" + String(analogRead(A0));
   //buff = String(positions[0]);
   //send and reset buff
   Serial.println(buff);
